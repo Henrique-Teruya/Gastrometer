@@ -8,6 +8,9 @@ import { firebaseConfig } from "./config";
 export async function getAuthenticatedAppForUser() {
   const authIdToken = (await cookies()).get("__session")?.value;
 
+  console.log("DEBUG - API KEY EXISTE?:", !!firebaseConfig.apiKey);
+  console.log("DEBUG - PROJECT ID:", firebaseConfig.projectId);
+
   const firebaseServerApp = initializeServerApp(
     firebaseConfig, // Agora o Firebase sabe qual projeto usar!
     {
