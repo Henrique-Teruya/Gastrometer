@@ -2,14 +2,14 @@
 import { initializeServerApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { cookies } from "next/headers";
-import { initializeApp } from "firebase/app";
+// Importando o objeto que acabamos de criar
+import { firebaseConfig } from "./config";
 
 export async function getAuthenticatedAppForUser() {
   const authIdToken = (await cookies()).get("__session")?.value;
 
   const firebaseServerApp = initializeServerApp(
-    // Configurações do seu app
-    initializeApp(),
+    firebaseConfig, // Agora o Firebase sabe qual projeto usar!
     {
       authIdToken,
     }
